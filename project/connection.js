@@ -1,12 +1,16 @@
+const mongoose = require('mongoose')
 
-const DBurl =
-  "mongodb+srv://mrinal1224:3QaBm9lf1iZ5RUWt@cluster0.kxyq8el.mongodb.net/Ecommerce?retryWrites=true&w=majority";
+async function connectMongoDb(url) {
+  return mongoose
+    .connect(url)
+    .then(() => {
+      console.log("Connection Successful");
+    })
+    .catch(() => {
+      console.log("Connection Unsuccesful");
+    });
+}
 
-mongoose
-  .connect(DBurl)
-  .then(() => {
-    console.log("Connection Successful");
-  })
-  .catch(() => {
-    console.log("Connection Unsuccesful");
-  });
+module.exports = {
+    connectMongoDb
+}

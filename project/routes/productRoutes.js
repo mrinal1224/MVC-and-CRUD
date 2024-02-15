@@ -1,4 +1,12 @@
-app.post("/api/products", async (req, res) => {
+const express = require('express')
+const ProductModel = require('../models/product')
+
+const router = express.Router()
+
+
+
+
+router.post("/", async (req, res) => {
     const product = new ProductModel({
       name: req.body.name,
       brand: req.body.brand,
@@ -13,19 +21,19 @@ app.post("/api/products", async (req, res) => {
   
   // get all products
   
-  app.get("/api/products", async (req, res) => {
+  router.get("/", async (req, res) => {
     let products = await ProductModel.find();
     res.send(products);
   });
   
-  app.get("/api/products/:id", async (req, res) => {
+  router.get("/:id", async (req, res) => {
     let products = await ProductModel.find(req.params.id);
     res.send(products);
   });
   
   // Update Product
   
-  app.put("/api/products/:id", async (req, res) => {
+  router.put("/:id", async (req, res) => {
     const updatedProduct = await ProductModel.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
     });
@@ -34,8 +42,9 @@ app.post("/api/products", async (req, res) => {
   
   // Delete Product
   
-  app.delete("/api/products/:id", async (req, res) => {
+  router.delete("/:id", async (req, res) => {
     const deletedProduct = await ProductModel.findByIdAndDelete(req.params.id);
     res.send(deletedProduct);
   });
   
+  module.exports = router
