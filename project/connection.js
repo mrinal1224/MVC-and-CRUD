@@ -6,8 +6,8 @@ async function connectMongoDb(url) {
     .then(() => {
       console.log("Connection Successful");
     })
-    .catch(() => {
-      console.log("Connection Unsuccesful");
+    .catch((err) => {
+      console.log("Connection Unsuccesful" , err);
     });
 }
 

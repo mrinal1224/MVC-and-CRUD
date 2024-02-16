@@ -13,6 +13,8 @@ app.use(express.json());
 
 app.use("/api/products/", productRoutes);
 
+
+
 // Add a product
 
 app.listen(PORT, () => {
